@@ -1,6 +1,4 @@
 # teletype
-A linux tool to output text file char by char with a delay to STDOUT
-
 Hi all, welcome to Code Monkey's YouTube channel!
 
 I'm typing pretty slowly, so I've come with an idea
