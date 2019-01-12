@@ -43,7 +43,7 @@
 ;                                                                                 ;
 ;---------------------------------------------------------------------------------;
 ;---------------------------------------------------------------------------------;
-;             please let me know if you find this code/project useful             ;
+;            please let me know if you find this code/project useful              ;
 ;---------------------------------------------------------------------------------;
 ;*********************************************************************************;
 ;---------------------------------------------------------------------------------;
@@ -59,6 +59,7 @@
 
 #define SOURCE_SIZE 10000
 #define PRINT_DELAY 50000
+#define EOF_DELAY 900000
 #define NEW_LINE_DELAY 500000
 
 char source[SOURCE_SIZE];
@@ -68,7 +69,7 @@ int main(int argc,char *argv[])
 {
     if(argc == 1)
     {
-        printf("usage: teletype [filename]\n");
+        printf("usage: teletype [filename] [options]\n");
         return 1;
     }
 
@@ -87,15 +88,16 @@ int main(int argc,char *argv[])
 
         while(*src)
         {
+            char *oldChar = src;
             putchar(*src++);
             fflush(stdout);
-                        
+                  
             switch(*src)
             {
-                case '\n': usleep(NEW_LINE_DELAY); break;
+                case '\n': (*oldChar != '\n') ? usleep(NEW_LINE_DELAY) : usleep(0); break;
                 case ' ': usleep(0); break;
                 default: usleep(PRINT_DELAY); break;
-            } 
+            }
         }
     }
 
